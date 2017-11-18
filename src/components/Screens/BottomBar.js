@@ -10,7 +10,6 @@ import {
 
 import HomePage from './HomePage';
 
-
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
