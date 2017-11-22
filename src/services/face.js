@@ -44,24 +44,31 @@ export const EnrollmentAPI = function(options) {
 
 export const FaceRecognitionAPI = function(options) {
     debugger;
-    var image = options.params.image;
-    var url = "https://api.kairos.com/recognize";
-    fetch(url, {
+
+    var data  = new FormData();
+    data.append(  'files', {uri: options.params.image});
+    console.log('image',options.params.image);
+
+    var url = "http://139.59.89.111:3000/kairos/recognizeImage";
+    fetch(url, data,{
         method: 'POST',
-        headers: header,
-        body: JSON.stringify({
-          "image": image,
-          "gallery_name": gallery_name
-        })
-    }).then((responseText) => {
+      headers: {
+        'Content-Type':  'multipart/form-data'
+      },
+      body:data
+        }).then((responseText) => {
+          debugger;
         if (responseText.status == 200) {
+          debugger;
             console.log('success');
             responseText.json().then(function(json) {
                 return options.success(json);
             });
         } else {
+          debugger;
            console.log('failed');
             responseText.json().then(function(json) {
+              debugger;
                 return options.error(json);
             });
         }
@@ -109,12 +116,15 @@ export const LoadGalleryViewSubjectAPI = function(options) {
             'subject_id':subject_id
         })
     }).then((responseText) => {
+      debugger;
         if (responseText.status == 200) {
             console.log('success');
             responseText.json().then(function(json) {
+              debugger;
                 return options.success(json);
             });
         } else {
+          debugger;
            console.log('failed');
             responseText.json().then(function(json) {
                 return options.error(json);
@@ -122,8 +132,9 @@ export const LoadGalleryViewSubjectAPI = function(options) {
         }
     })
     .catch((error) => {
+      debugger;
         console.warn(error);
-       AlertBox(options.errorMessage);
+       Alert.alert(options.errorMessage);
     });
 }
 

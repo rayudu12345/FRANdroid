@@ -27,12 +27,14 @@ export default function reduce(state = initialState, action = {}) {
       });
       break;
     case ActionTypes.FACERECOGNITION_SUCCESS:
+    debugger;
       return state.merge({
         recognizeResponse: action.data,
         recognizeStatus:true
       });
       break;
     case ActionTypes.FACERECOGNITION_FAILED:
+    debugger;
       return state.merge({
         recognizeResponse: action.data,
         recognizeStatus:false

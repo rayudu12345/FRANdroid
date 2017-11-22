@@ -48,20 +48,20 @@ onPressFaceRecognitionButton() {
 
   render(){
     return (
-          <View style={{alignItems:'center'}}>
+          <View style={{alignItems:'center',justifyContent:'center'}}>
                <HeaderBar title="HOME"/>
-               <View style={{marginTop: 20, alignItems:'center'}}>
-               <Image source={require('../../images/logo.png')} style={{width:(width - 150), height:(width - 150)}} />
+               <View style={{marginTop: height/20, alignItems:'center'}}>
+               <Image source={require('../../images/Telangana_Police_Logo.png')} style={{width:height/3, height:height/2.5}} />
                </View>
-               <TouchableOpacity style={[styles.buttonContainer, {marginTop:20}]} onPress={this.onPressEnrollButton.bind(this)}>
+               {/*<TouchableOpacity style={[styles.buttonContainer, {marginTop:20}]} onPress={this.onPressEnrollButton.bind(this)}>
                   <Text style={styles.buttonText}>NEW ENROLLMENT</Text>
                </TouchableOpacity>
 
                <TouchableOpacity style={[styles.buttonContainer, {marginTop:15}]} onPress={this.onPressListEnrollButton.bind(this)}>
                   <Text style={styles.buttonText}>LIST ENROLLMENT</Text>
-               </TouchableOpacity>
+               </TouchableOpacity>*/}
 
-               <TouchableOpacity style={[styles.buttonContainer,{marginTop:15}]} onPress={this.onPressFaceRecognitionButton.bind(this)}>
+               <TouchableOpacity style={[styles.buttonContainer,{marginTop:height/15}]} onPress={this.onPressFaceRecognitionButton.bind(this)}>
                   <Text style={styles.buttonText}>FACE RECOGNITION</Text>
                </TouchableOpacity>
 
@@ -74,7 +74,9 @@ onPressFaceRecognitionButton() {
     const styles = StyleSheet.create({
       container: {
         flex:1,
-        padding: 20
+        padding: 20,
+        justifyContent:'center',
+        alignItems:'center'
         },
       input: {
         height:40,
@@ -85,9 +87,13 @@ onPressFaceRecognitionButton() {
         paddingHorizontal:10
       },
       buttonContainer:{
-        backgroundColor:'#0C303F',
+        backgroundColor:'#374176',
         width: width*0.8,
         paddingVertical:15,
+        height:60,
+        justifyContent:'center',
+        alignItems:'center',
+
         //marginLeft:20,
         //marginRight:20
       },

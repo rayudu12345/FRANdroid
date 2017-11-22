@@ -34,6 +34,7 @@ export function enrollment(options) {
 export function faceRecognition(options) {
   debugger;
   return dispatch => {
+    debugger;
     FaceRecognitionAPI({
       params:options.params,
       errorMessage:'Subject not found',
