@@ -21,7 +21,7 @@ export default class HeaderBar extends React.Component {
 
   render() {
     return (
-      <View style={{backgroundColor:'#0C303F'}}>
+      <View style={{backgroundColor:'#374176'}}>
         <Text style={{ textAlign:'center',width:width ,color:'#ffffff', paddingTop:10, paddingBottom:10, marginLeft:20, marginRight:20, fontSize:20}}>{this.props.title}</Text>
       </View>
     );

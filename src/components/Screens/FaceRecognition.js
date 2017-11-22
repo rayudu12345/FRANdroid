@@ -10,7 +10,7 @@ import BottomBar from './BottomBar';
 import HeaderBar from './HeaderBar';
 import * as faceActions from '../../store/face/actions';
 import * as faceSelectors from '../../store/face/reducer';
-import AlertBox from '../../../index';
+import AlertBox from '../../Core/AlertBox';
 //import * as formValidator from '../../Util';
 
 import loaderHandler from 'react-native-busy-indicator/LoaderHandler';
@@ -29,40 +29,6 @@ export class FaceRecognition extends React.Component {
         recognizeStatus:false,
 
       };
-  }
-
-  onPressContinue() {
-    debugger;
-    loaderHandler.showLoader("Loading");
-    var params = {
-      image: this.state.image
-
-    };
-    this.props.dispatch(faceActions.faceRecognition({params:params}));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.recognizeStatus == true) {
-        /*this.props.navigator.push({
-          component:ListEnrollment,
-          name:'list-enrollment'
-        });*/
-        this.setState({recognizeStatus:nextProps.recognizeStatus});
-        loaderHandler.hideLoader();
-    } else {
-      Alert.alert(
-        'Error',
-        nextProps.recognizeResponse.Errors.message,
-      );
-      loaderHandler.hideLoader();
-    }
-  }
-
-  onPressHome() {
-    this.props.navigator.push({
-      component:HomePage,
-      name:'home-page'
-    });
   }
 
   selectPhotoTapped() {
@@ -101,7 +67,44 @@ export class FaceRecognition extends React.Component {
             });
         }
 
+  onPressContinue() {
+    debugger;
+    loaderHandler.showLoader("Loading");
+    var params = {
+      image: this.state.image
+
+    };
+    this.props.dispatch(faceActions.faceRecognition({params:params}));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    debugger;
+    if (nextProps.recognizeStatus == true) {
+        /*this.props.navigator.push({
+          component:ListEnrollment,
+          name:'list-enrollment'
+        });*/
+        this.setState({recognizeStatus:nextProps.recognizeStatus});
+        loaderHandler.hideLoader();
+    } else {
+      debugger;
+      AlertBox(
+        nextProps.recognizeResponse.Errors.message);
+      loaderHandler.hideLoader();
+    }
+  }
+
+  onPressHome() {
+    this.props.navigator.push({
+      component:HomePage,
+      name:'home-page'
+    });
+  }
+
+
+
   _renderTransaction(data) {
+    debugger;
         return (
           <View>
 
@@ -116,7 +119,9 @@ export class FaceRecognition extends React.Component {
   }
 
   _renderCandidate(candidates) {
+    debugger;
       return candidates.map((data, i) => {
+        debugger;
         return (
           <View key={i}>
 
@@ -146,6 +151,7 @@ export class FaceRecognition extends React.Component {
   }
 
   render(){
+    debugger;
     return (
           <View style={{flex:1}}>
           <View style={{alignItems:'center'}}>
@@ -193,7 +199,7 @@ export class FaceRecognition extends React.Component {
       paddingHorizontal:10
     },
     buttonContainer:{
-      backgroundColor:'#0C303F',
+      backgroundColor:'#374176',
       width: width*0.8,
       paddingVertical:15
     },
@@ -222,6 +228,7 @@ export class FaceRecognition extends React.Component {
   });
 
     const mapStateToProps = (state) => {
+      debugger;
     return {
 
       recognizeStatus: faceSelectors.getRecognizeStatus(state),
