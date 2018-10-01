@@ -962,10 +962,30 @@ onMoveStart() {
           </View >
           <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
           <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
-          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Alias Name : </Text>
+          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Alias : </Text>
           </View>
           <View style={{flex:0.5,justifyContent:'center'}}>
           <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.alias_name}</Text>
+          </View>
+
+
+          </View >
+          <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
+          <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
+          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Parentage : </Text>
+          </View>
+          <View style={{flex:0.5,justifyContent:'center'}}>
+          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.guardian_name}</Text>
+          </View>
+
+
+          </View >
+          <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
+          <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
+            <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>DOB :</Text>
+          </View>
+          <View style={{flex:0.5,justifyContent:'center'}}>
+            <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{(data.dob=='00-00-0000' || data.dob=='0000-00-00'|| data.dob=='01-01-1970'|| data.dob== '1-1-1970') ?null:data.dob}</Text>
           </View>
 
 
@@ -986,16 +1006,7 @@ onMoveStart() {
               <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:3,fontWeight:'600'}}>{data.gender}</Text>
             </View>
           </View>
-          <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
-          <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
-            <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>DOB :</Text>
-          </View>
-          <View style={{flex:0.5,justifyContent:'center'}}>
-            <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{(data.dob=='00-00-0000' || data.dob=='0000-00-00'|| data.dob=='01-01-1970'|| data.dob== '1-1-1970') ?null:data.dob}</Text>
-          </View>
 
-
-          </View >
           <View style={{ flexDirection:'row', borderBottomColor:'#dedede'}}>
             <View style={{flex:0.5}}>
               <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Known Languages :</Text>
@@ -1020,22 +1031,8 @@ onMoveStart() {
               <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.state}</Text>
             </View>
           </View>
-          <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
-            <View style={{flex:0.5}}>
-              <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Guardian Type :</Text>
-            </View>
-            <View style={{flex:0.5}}>
-              <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.guardian_type}</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
-          <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
-          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Guardian Name :</Text>
-          </View>
-          <View style={{flex:0.5,justifyContent:'center'}}>
-          <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.guardian_name}</Text>
-          </View>
-          </View>
+
+
             <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
             <View style={{flex:0.5, borderRightColor:'#ccc'}}>
             <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Address :</Text>
@@ -1044,14 +1041,7 @@ onMoveStart() {
               <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.address}</Text>
             </View>
           </View >
-          <View style={{ flexDirection:'row', borderColor:'#ccc'}}>
-            <View style={{flex:0.5,justifyContent:'center', borderRightColor:'#ccc'}}>
-              <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Aadhar Number :</Text>
-            </View>
-            <View style={{flex:0.5}}>
-            <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{data.aadhar_num}</Text>
-            </View>
-          </View >
+
           </View>
           <View style={{marginLeft:-scale(8),marginTop:verticalScale(8),justifyContent:'center',height:30,backgroundColor:'#089680',alignItems:'flex-start'}}>
             <Text style={{marginLeft:10,fontSize:moderateScale(14,0.5),color:'#fff',paddingBottom:verticalScale(3),borderBottomColor:'#000',fontWeight:'600'}}>Descriptive Roll (D.R):</Text>
@@ -1187,7 +1177,7 @@ onMoveStart() {
                     <View style={{paddingLeft:scale(8)}}>
                     <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>FIR Number :</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Crime No. :</Text>
                       </View>
                       <View style={{flex:0.5}}>
                         <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.fir_no}</Text>
@@ -1195,7 +1185,7 @@ onMoveStart() {
                     </View>
                     <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>FIR DATE :</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Crime Year :</Text>
                       </View>
                       <View style={{flex:0.5}}>
                         <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.fir_date}</Text>
@@ -1203,10 +1193,18 @@ onMoveStart() {
                     </View>
                     <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>State :</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Section of Law :</Text>
                       </View>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Telangana</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.section}</Text>
+                      </View>
+                    </View>
+                    <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
+                      <View style={{flex:0.5}}>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Police Station :</Text>
+                      </View>
+                      <View style={{flex:0.5}}>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.ps_name}</Text>
                       </View>
                     </View>
                     <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
@@ -1220,28 +1218,10 @@ onMoveStart() {
 
                     <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>PS Name :</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>State :</Text>
                       </View>
                       <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.ps_name}</Text>
-                      </View>
-                    </View>
-
-                    <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
-                      <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Section :</Text>
-                      </View>
-                      <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.section}</Text>
-                      </View>
-                    </View>
-
-                    <View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center', borderBottomColor:'#dedede'}}>
-                      <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Act :</Text>
-                      </View>
-                      <View style={{flex:0.5}}>
-                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>{rowData.act}</Text>
+                        <Text style={{fontSize:moderateScale(12,0.5),color:'#000',paddingBottom:verticalScale(3),fontWeight:'600'}}>Telangana</Text>
                       </View>
                     </View>
                   </View>
