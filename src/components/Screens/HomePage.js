@@ -39,8 +39,7 @@ onPressListEnrollButton(){
 }
 
 onPressFaceRecognitionButton() {
-
-  this.props.navigator.push({
+  this.props.navigator.replacePrevious({
     component:FaceRecognition,
     name:'face-recognition'
   });

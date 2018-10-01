@@ -10,6 +10,7 @@
    StyleSheet,
    Text,
    View,
+   Navigator,
    TouchableOpacity,
    PixelRatio,
    Image
@@ -31,10 +32,14 @@ export default class FaceRecognition extends Component {
 
   }
 
+
+
   render() {
      /*return (<App />);*/
      return (
+
        <Provider store = {this.state.store} >
+               
                 <App store = {this.state.store} />
               </Provider>
 

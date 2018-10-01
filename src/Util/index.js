@@ -8,6 +8,16 @@ export function isValidPhoneNumber(phone) {
   }
 }
 
+export function isEnrolled(enrolled_at) {
+  var regx = /^.{15,120}$/;
+
+  if (regx.test(enrolled_at) === true) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export function isValidPinCode(pin_code) {
   var regx = /^[0-9]{6}$/;
 
