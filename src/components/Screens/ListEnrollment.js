@@ -19,6 +19,8 @@ import FaceRecognition from './FaceRecognition';
 import BottomBar from './BottomBar';
 import HeaderBar from './HeaderBar';
 import ProfileData from './ProfileData';
+import AlertBox from '../../Core/AlertBox';
+import { SERVICE_URL } from '../Constants'
 
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
@@ -30,24 +32,11 @@ export class ListEnrollment extends Component {
   constructor(props) {
     debugger;
     super(props);
-        console.log(this.props.galleryView);
+        //console.log(this.props.galleryView);
+        this.state={
+        }
       }
 
-  componentDidMount() {
-    debugger;
-    this.props.dispatch(faceActions.loadGalleryView({}));
-  }
-
-  onPressButton(rowData){
-    debugger;
-    this.props.dispatch(faceActions.loadGalleryView(rowData))
-    this.props.navigator.push({
-      component:ProfileData,
-      rowData: rowData,
-      name:'profile-data'
-    });
-    //this.props.navigation.navigate('ProfileData',rowData)
-  }
 
 onPressHome(){
   this.props.navigator.push({
@@ -56,41 +45,71 @@ onPressHome(){
   });
 }
 
+
+renderList(props){
+  var listResponse = this.props.recognizeResponse.data;
+  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+if (listResponse.length !== 0) {
+  console.log(listResponse.length);
+  return  <ListView
+      dataSource={ds.cloneWithRows(this.props.recognizeResponse.data)}
+      enableEmptySections={true}
+      ref={ref => this.listView = ref}
+            onContentSizeChange={() => {
+            this.listView.scrollTo({y: 0})
+             }}
+      style={Platform.select({
+        ios:{paddingLeft:30, paddingRight:30},
+        android:{paddingLeft:30,paddingRight:30,marginBottom:100}
+      })}
+      renderRow={(rowData) =>
+
+          <View style={{justifyContent:'center',flex:1,paddingTop:10, paddingBottom:10, borderBottomWidth:1, borderBottomColor:'#e6e6e6'}}>
+
+                    <View style={{marginTop:3,flexDirection:'row',flex:1}}>
+                      <Text style={{fontSize:16,flex:0.5}}>Name</Text>
+                      <Text style={{fontSize:14,flex:0.5}}>{rowData.Name}</Text>
+                  </View>
+                  <View style={{marginTop:3,flexDirection:'row',flex:1}}>
+                    <Text style={{fontSize:16,flex:0.5}}>FBID</Text>
+                    <Text style={{fontSize:14,flex:0.5}}>{rowData.FBID}</Text>
+                </View>
+                <View style={{marginTop:3,flexDirection:'row',flex:1}}>
+                <Text style={{fontSize:16,flex:0.5}}>Source Image</Text>
+                <View style={{flex:0.5}}>
+                  <Image source={{uri:SERVICE_URL+`fr_images/facebook-search-history/` + rowData.source_image}} style={{height:50,width:50}} />
+                </View>
+            </View>
+                <View style={{marginTop:3,flexDirection:'row',flex:1}}>
+                  <Text style={{fontSize:16,flex:0.5}}>Detected Image</Text>
+                  <View style={{flex:0.5}}>
+                    <Image source={{uri:SERVICE_URL+`fr_images/facebook/` + rowData.Photo}} style={{height:50,width:50}} />
+                  </View>
+                  </View>
+
+              </View>
+        }
+      />
+    } else {
+          return <Text style={{textAlign:'center',color:'#f00',fontSize:20}}>No data found ! </Text>
+
+
+    }
+  }
+
+
 render(){
 
-      debugger;
-        var ds = new ListView.DataSource({rowHasChanged: (row1, row2) => { row1 !== row2;}});
-
-        var ListRecordsData = (
-          <ListView
-          dataSource={ds.cloneWithRows( this.props.records )}
-          enableEmptySections={true}
-          style={Platform.select({
-            ios:{paddingLeft:30, paddingRight:30},
-            android:{paddingLeft:20, paddingRight:20}
-          })}
-          renderRow={(rowData) =>
-              <TouchableOpacity onPress={this.onPressButton.bind(this, rowData)}>
-              <View style={{flexDirection:'row', paddingTop:10, paddingBottom:10, borderBottomWidth:1, borderBottomColor:'#e6e6e6'}}>
-                  <View style={{flex:0.7, flexDirection:'column', justifyContent:'center'}}>
-                      <Text style={{fontSize:20}}>{rowData.toUpperCase()}</Text>
-                  </View>
-                  <View style={{alignItems:'flex-end',justifyContent:'center',flex:0.3}}>
-                     <Image source={require('../../images/person.png')} style={{borderColor:"#fff",borderWidth:1,borderRadius:60/2,height:60,width:60}}/>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            }
-          />
-        );
-
+      const list = this.renderList(this.props.recognizeResponse);
         return(
-          <View >
+          <View style={{flex:1}}>
           <View style={{alignItems:'center'}}>
-            <HeaderBar title={'LIST ENROLLMENT'} />
+            <HeaderBar title={'DATA DISPLAY'} />
             </View>
-            {ListRecordsData}
-            <BottomBar navigator={this.props.navigator}/>
+            {list}
+
+            <BottomBar navigator={this.props.navigator} />
            </View>
         );
     }
@@ -139,7 +158,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   debugger;
   return {
-    records: faceSelectors.getGalleryView(state)
+    recognizeResponse: faceSelectors.getRecognizeResponse(state),
+    recognizeStatus: faceSelectors.getRecognizeStatus(state),
 
   };
 }
