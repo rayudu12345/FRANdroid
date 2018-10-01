@@ -3,7 +3,7 @@ import React,{PureComponent} from 'react';
 import {
   Navigator,
   BackAndroid,
-  BackHandler,
+  BackHandler ,
   StyleSheet,
   AppState,
   Alert,
@@ -18,6 +18,7 @@ import {
  import AndroidBackButton from "react-native-android-back-button"
 import RouteMapper from './components/Routes';
 import OfflineNotice from './components/Screens/OfflineNotice';
+import { NavigationActions } from "react-navigation"
 
 function MiniOfflineSign() {
   return (
@@ -31,6 +32,7 @@ export default class App extends PureComponent {
       constructor(props){
         super(props);
 
+        this.backButtonClick = this.backButtonClick.bind(this);
         state = {
     appState: AppState.currentState,
     isConnected: true,
@@ -39,11 +41,12 @@ export default class App extends PureComponent {
       }
 
       componentDidMount() {
+         BackAndroid.addEventListener('hardwareBackPress', this.backButtonClick );
       NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     }
 
     componentWillUnmount() {
-      //BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid.bind(this))
+      BackAndroid.addEventListener('hardwareBackPress', this.backButtonClick )
       NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
     }
 
@@ -73,10 +76,16 @@ _renderAlert(){
 
 
 
-      onBackAndroid = () => { // works best when the goBack is async
-
-       return true;
+backButtonClick(){
+  console.log(this.props.navigation,'this.props.navigation');
+  if(this.props.navigation && this.props.navigation.goBack){
+     this.props.navigation.goBack(null);
+     return true;
    }
+   return false;
+   }
+
+
 
    popIfExists() {
    if (navigator.getCurrentIndex() > 0) {

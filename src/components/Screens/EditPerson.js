@@ -692,7 +692,11 @@ _submitDistrict(district_id,i){
 
 }
 
-
+addTextInput = (key) => {
+    let alias_name1 = this.state.alias_name1;
+    alias_name1.push(<TextInput key={key} />);
+    this.setState({ alias_name1 })
+  }
 
 
 
@@ -894,14 +898,16 @@ let rows = this.state.rows.map((r, i) => {
           </View>
           </View>
           <View style={{flex:0.2,justifyContent:'center'}}>
-          <Button  transparent={true}  onPress={this._addAlias.bind(this,data,j)} >
+          <Button  transparent={true}  onPress={() => this.addTextInput(this.state.alias_name1.length)} >
              <Image source={require('../../images/blue-plus-sign-md.png')} style={{width:30,height:30}}/>
           </Button>
 
           </View>
 
           </View>
-
+          {this.state.alias_name1.map((value, index) => {
+          return value
+        })}
           {this.state.enlarge==true?<Label style={{fontSize:12,fontFamily:'Roboto-Black',paddingLeft:15,paddingTop:5}}>Alias Name {j+1}</Label>:null}
           {this.state.enlarge==true?((this.state.aliasNameRow)).map((r, i) => {
           return <View key={ i } style={[styles.row, CheckIndex(i)]}>

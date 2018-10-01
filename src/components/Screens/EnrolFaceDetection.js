@@ -241,6 +241,11 @@ this.setState({case_category:dds});
 
       onPressSubmit(){
         debugger;
+        if(this.state.person_single==''){
+          console.log(this.state.person_single,'this.state.person_single');
+         AlertBox('Please Select  Person Type');
+         loaderHandler.hideLoader();
+       }else{
         var db_ccategory = [this.state.person_single];
         console.log(db_ccategory,'db_ccategory');
           let length = this.props.case_type_person.data.length;
@@ -258,7 +263,8 @@ this.setState({case_category:dds});
             this.setState({person_case_category:ssds});
             console.log(this.state.person_case_category,'tthis.state.person_case_category');
           loaderHandler.showLoader('Loading...');
-           if(ssds.length==0){
+           if(this.state.person_single==''){
+             console.log(this.state.person_single,'this.state.person_single');
             AlertBox('Please Select  Person Type');
             loaderHandler.hideLoader();
           }else if( (this.state.c_photo || this.state.photo) == null){
@@ -332,6 +338,7 @@ this.setState({case_category:dds});
           }
 
         }
+      }
 
 
     }
